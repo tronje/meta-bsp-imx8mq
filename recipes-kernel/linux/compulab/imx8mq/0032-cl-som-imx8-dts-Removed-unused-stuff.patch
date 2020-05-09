@@ -1,0 +1,90 @@
+From 916974e021275e8735c29ecb9fe1b6ff90606c12 Mon Sep 17 00:00:00 2001
+From: Valentin Raevsky <valentin@compulab.co.il>
+Date: Mon, 16 Mar 2020 09:50:00 +0200
+Subject: [PATCH 32/38] cl-som-imx8: dts: Removed unused stuff
+
+Signed-off-by: Valentin Raevsky <valentin@compulab.co.il>
+---
+ arch/arm64/boot/dts/compulab/compulab-imx8mq.dtsi | 38 +----------------------
+ 1 file changed, 1 insertion(+), 37 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/compulab/compulab-imx8mq.dtsi b/arch/arm64/boot/dts/compulab/compulab-imx8mq.dtsi
+index bc2d97716160..46693bafb43d 100644
+--- a/arch/arm64/boot/dts/compulab/compulab-imx8mq.dtsi
++++ b/arch/arm64/boot/dts/compulab/compulab-imx8mq.dtsi
+@@ -229,12 +229,6 @@
+ 			>;
+ 		};
+ 
+-		pinctrl_pwm2: pwm2grp {
+-			fsl,pins = <
+-				MX8MQ_IOMUXC_I2C4_SCL_PWM2_OUT 		0x16
+-			>;
+-		};
+-
+ 		pinctrl_ecspi1: ecspi1grp {
+ 			fsl,pins = <
+ 				MX8MQ_IOMUXC_ECSPI1_SCLK_ECSPI1_SCLK 	0x82
+@@ -263,15 +257,6 @@
+ 			>;
+ 		};
+ 
+-		pinctrl_uart4: uart4grp {
+-			fsl,pins = <
+-				MX8MQ_IOMUXC_ECSPI2_MOSI_UART4_DCE_TX		0x79
+-				MX8MQ_IOMUXC_ECSPI2_SCLK_UART4_DCE_RX		0x79
+-				MX8MQ_IOMUXC_ECSPI2_MISO_UART4_DCE_CTS_B	0x79
+-				MX8MQ_IOMUXC_ECSPI2_SS0_UART4_DCE_RTS_B		0x79
+-			>;
+-		};
+-
+ 		pinctrl_usdhc1_gpio: usdhc1grpgpio {
+ 			fsl,pins = <
+ 				MX8MQ_IOMUXC_SD1_RESET_B_GPIO2_IO10	0x1c
+@@ -538,12 +523,6 @@
+     status = "disabled";
+ };
+ 
+-&pwm2 {
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_pwm2>;
+-	status = "okay";
+-};
+-
+ &uart3 { /* console */
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_uart3>;
+@@ -552,15 +531,6 @@
+ 	status = "okay";
+ };
+ 
+-&uart4 { /* BT */
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_uart4>;
+-	assigned-clocks = <&clk IMX8MQ_CLK_UART4>;
+-	assigned-clock-parents = <&clk IMX8MQ_CLK_25M>;
+-	fsl,uart-has-rtscts;
+-	status = "okay";
+-};
+-
+ &dcss {
+ 	status = "okay";
+ 
+@@ -695,13 +665,7 @@
+ };
+ 
+ &A53_0 {
+-	operating-points = <
+-		/* kHz    uV */
+-		1500000 1000000
+-		1300000 1000000
+-		1000000 900000
+-		800000  900000
+-	>;
++	/delete-property/ dc-supply;
+ };
+ 
+ &resmem {
+-- 
+2.11.0
+

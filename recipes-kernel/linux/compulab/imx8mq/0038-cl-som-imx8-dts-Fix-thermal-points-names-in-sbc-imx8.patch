@@ -1,0 +1,45 @@
+From c9aea36976b8b12ed1a9961e9c2061bbb5835a09 Mon Sep 17 00:00:00 2001
+From: Valentin Raevsky <valentin@compulab.co.il>
+Date: Fri, 8 May 2020 21:12:05 +0300
+Subject: [PATCH 38/38] cl-som-imx8: dts: Fix thermal points names in
+ sbc-imx8-thermal.dts
+
+Signed-off-by: Valentin Raevsky <valentin@compulab.co.il>
+---
+ arch/arm64/boot/dts/compulab/sbc-imx8-thermal.dts | 4 ++--
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi         | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/compulab/sbc-imx8-thermal.dts b/arch/arm64/boot/dts/compulab/sbc-imx8-thermal.dts
+index b67eb1909eff..289832f24f89 100644
+--- a/arch/arm64/boot/dts/compulab/sbc-imx8-thermal.dts
++++ b/arch/arm64/boot/dts/compulab/sbc-imx8-thermal.dts
+@@ -5,10 +5,10 @@
+     compatible = "compulab,sbc-imx8", "compulab,cl-som-imx8,rev1.1", "compulab,cl-som-imx8", "fsl,imx8mq";
+ };
+ 
+-&cpu_alert0 {
++&cpu_alert {
+        temperature = <125000>;
+ };
+ 
+-&cpu_crit0 {
++&cpu_crit {
+        temperature = <165000>;
+ };
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+index 4e837545609e..348bfa93de92 100755
+--- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+@@ -232,7 +232,7 @@
+ 					type = "passive";
+ 				};
+ 
+-				cpu-crit {
++				cpu_crit: cpu-crit {
+ 					temperature = <90000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+-- 
+2.11.0
+

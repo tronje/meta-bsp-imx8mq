@@ -1,0 +1,26 @@
+From fdbc4f872d9d2fd8d58e6923f8921c50639f62ea Mon Sep 17 00:00:00 2001
+From: Valentin Raevsky <valentin@compulab.co.il>
+Date: Thu, 31 Oct 2019 11:38:47 +0200
+Subject: [PATCH 24/38] cl-som-imx8: dts: Reduced the linux,cma down to 384M
+
+Signed-off-by: Valentin Raevsky <valentin@compulab.co.il>
+---
+ arch/arm64/boot/dts/compulab/compulab-imx8mq.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/compulab/compulab-imx8mq.dtsi b/arch/arm64/boot/dts/compulab/compulab-imx8mq.dtsi
+index b482598a0a63..59619654f553 100644
+--- a/arch/arm64/boot/dts/compulab/compulab-imx8mq.dtsi
++++ b/arch/arm64/boot/dts/compulab/compulab-imx8mq.dtsi
+@@ -682,7 +682,7 @@
+     linux,cma {
+         compatible = "shared-dma-pool";
+         reusable;
+-        size = <0 0x2c000000>;
++        size = <0 0x18000000>;
+         alloc-ranges = <0 0x40000000 0 0x40000000>;
+         linux,cma-default;
+     };
+-- 
+2.11.0
+

@@ -1,0 +1,102 @@
+From f59e72187dc92a44e44200940370c7a3fda220c3 Mon Sep 17 00:00:00 2001
+From: Valentin Raevsky <valentin@compulab.co.il>
+Date: Fri, 8 May 2020 21:11:12 +0300
+Subject: [PATCH 37/38] cl-som-imx8: dts: Enable LVDS support
+
+1) Fix mipi dsi node names
+2) Add lvds trees back to Makefile
+
+Signed-off-by: Valentin Raevsky <valentin@compulab.co.il>
+---
+ arch/arm64/boot/dts/compulab/Makefile                        | 2 ++
+ arch/arm64/boot/dts/compulab/compulab-imx8mq-lvds-mipi.dtsi  | 2 +-
+ arch/arm64/boot/dts/compulab/compulab-imx8mq-mipi-dcss.dtsi  | 6 +++---
+ arch/arm64/boot/dts/compulab/compulab-imx8mq-mipi-lcdif.dtsi | 6 +++---
+ 4 files changed, 9 insertions(+), 7 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/compulab/Makefile b/arch/arm64/boot/dts/compulab/Makefile
+index 2a7c9d032efa..16f655571e5f 100644
+--- a/arch/arm64/boot/dts/compulab/Makefile
++++ b/arch/arm64/boot/dts/compulab/Makefile
+@@ -6,6 +6,8 @@ dtb-$(CONFIG_ARCH_MXC) += sbc-imx8-dp.dtb
+ dtb-$(CONFIG_ARCH_MXC) += sbc-imx8-m4.dtb
+ dtb-$(CONFIG_ARCH_MXC) += sbc-imx8-no-wp.dtb
+ dtb-$(CONFIG_ARCH_MXC) += sbc-imx8-emmc-low.dtb
++dtb-$(CONFIG_ARCH_MXC) += sbc-imx8-lvds-dcss.dtb
++dtb-$(CONFIG_ARCH_MXC) += sbc-imx8-lvds-lcdif.dtb
+ 
+ always		:= $(dtb-y)
+ subdir-y	:= $(dts-dirs)
+diff --git a/arch/arm64/boot/dts/compulab/compulab-imx8mq-lvds-mipi.dtsi b/arch/arm64/boot/dts/compulab/compulab-imx8mq-lvds-mipi.dtsi
+index e34c55a84964..7ba9f0cf1d0a 100644
+--- a/arch/arm64/boot/dts/compulab/compulab-imx8mq-lvds-mipi.dtsi
++++ b/arch/arm64/boot/dts/compulab/compulab-imx8mq-lvds-mipi.dtsi
+@@ -62,7 +62,7 @@
+     };
+ };
+ 
+-&mipi_dsi_bridge {
++&mipi_dsi {
+     status = "okay";
+ 
+     port@1 {
+diff --git a/arch/arm64/boot/dts/compulab/compulab-imx8mq-mipi-dcss.dtsi b/arch/arm64/boot/dts/compulab/compulab-imx8mq-mipi-dcss.dtsi
+index 2166e0b6eda8..24f67ba18460 100644
+--- a/arch/arm64/boot/dts/compulab/compulab-imx8mq-mipi-dcss.dtsi
++++ b/arch/arm64/boot/dts/compulab/compulab-imx8mq-mipi-dcss.dtsi
+@@ -38,20 +38,20 @@
+ 
+     dcss_disp0: port@0 {
+         reg = <0>;
+-        dcss_disp0_mipi_dsi: mipi_dsi {
++        dcss_disp0_mipi_dsi: endpoint {
+             remote-endpoint = <&mipi_dsi_in>;
+         };
+     };
+ };
+ 
+-&mipi_dsi_phy {
++&dphy {
+     status = "okay";
+ };
+ 
+ &mipi_dsi {
+     status = "okay";
+ 
+-    port@1 {
++    port@0 {
+         mipi_dsi_in: endpoint {
+             remote-endpoint = <&dcss_disp0_mipi_dsi>;
+         };
+diff --git a/arch/arm64/boot/dts/compulab/compulab-imx8mq-mipi-lcdif.dtsi b/arch/arm64/boot/dts/compulab/compulab-imx8mq-mipi-lcdif.dtsi
+index e415ee9b884d..1eef037d43c8 100644
+--- a/arch/arm64/boot/dts/compulab/compulab-imx8mq-mipi-lcdif.dtsi
++++ b/arch/arm64/boot/dts/compulab/compulab-imx8mq-mipi-lcdif.dtsi
+@@ -17,13 +17,13 @@
+     max-res = <1920>, <1200>;
+ 
+     port@0 {
+-        lcdif_mipi_dsi: mipi-dsi-endpoint {
++        lcdif_mipi_dsi: endpoint {
+             remote-endpoint = <&mipi_dsi_in>;
+         };
+     };
+ };
+ 
+-&mipi_dsi_phy {
++&dphy {
+     status = "okay";
+ };
+ 
+@@ -33,7 +33,7 @@
+     sync-pol = <1>;
+     pwr-delay = <10>;
+ 
+-    port@1 {
++    port@0 {
+         mipi_dsi_in: endpoint {
+             remote-endpoint = <&lcdif_mipi_dsi>;
+         };
+-- 
+2.11.0
+
