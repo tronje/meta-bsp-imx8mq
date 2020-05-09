@@ -1,0 +1,30 @@
+From 1494bcd439338b3ef08646af2071da808b0b609b Mon Sep 17 00:00:00 2001
+From: Valentin Raevsky <valentin@compulab.co.il>
+Date: Mon, 1 Jul 2019 22:21:57 +0300
+Subject: [PATCH 10/51] cl-som-imx8: config: RAM_BOARD_CFG is the default
+
+Make the RAM_BOARD_CFG is the default RAM configuration.
+RAM_BOARD_CFG & P20.15 connected to GND =  RAM_2G.
+RAM_BOARD_CFG & P20.15 connected to 3V3 = RAM_1G.
+
+Signed-off-by: Valentin Raevsky <valentin@compulab.co.il>
+---
+ board/compulab/imx8/Kconfig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/board/compulab/imx8/Kconfig b/board/compulab/imx8/Kconfig
+index d0b102e846..36ee7b2516 100644
+--- a/board/compulab/imx8/Kconfig
++++ b/board/compulab/imx8/Kconfig
+@@ -24,7 +24,7 @@ config SYS_CONFIG_NAME
+ 
+ choice
+ 	prompt "RAM Volume select"
+-	default RAM_2G
++	default RAM_BOARD_CFG
+ 	help
+ 	 This option configures 2G RAM only
+ 
+-- 
+2.11.0
+

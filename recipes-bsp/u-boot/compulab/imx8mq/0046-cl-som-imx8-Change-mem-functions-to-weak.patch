@@ -1,0 +1,35 @@
+From 38a7da977084803d25c76e1f7bc6250f8b1a877d Mon Sep 17 00:00:00 2001
+From: Valentin Raevsky <valentin@compulab.co.il>
+Date: Fri, 8 May 2020 18:14:07 +0300
+Subject: [PATCH 46/51] cl-som-imx8: Change mem functions to weak
+
+Signed-off-by: Valentin Raevsky <valentin@compulab.co.il>
+---
+ arch/arm/mach-imx/imx8m/soc.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm/mach-imx/imx8m/soc.c b/arch/arm/mach-imx/imx8m/soc.c
+index 58997e7900..35fb2cb8d5 100644
+--- a/arch/arm/mach-imx/imx8m/soc.c
++++ b/arch/arm/mach-imx/imx8m/soc.c
+@@ -231,7 +231,7 @@ int dram_init(void)
+ 	return 0;
+ }
+ 
+-int dram_init_banksize(void)
++__weak int dram_init_banksize(void)
+ {
+ 	int bank = 0;
+ 	int ret;
+@@ -273,7 +273,7 @@ int dram_init_banksize(void)
+ 	return 0;
+ }
+ 
+-phys_size_t get_effective_memsize(void)
++__weak phys_size_t get_effective_memsize(void)
+ {
+ 	/* return the first bank as effective memory */
+ 	if (rom_pointer[1])
+-- 
+2.11.0
+
